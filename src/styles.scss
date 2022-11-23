@@ -1,3 +1,4 @@
+@import "./app/styles/variables.scss";
 /* You can add global styles to this file, and also import other style files */
 * {
   margin: 0;
@@ -7,5 +8,6 @@
 
 body {
   background-color: black;
-  color: white;
+  color: $mainFontColor;
+  font-family: $mainFont;
 }
