@@ -1,0 +1,31 @@
+<nav class="main-nav">
+  <div class="container">
+    <div class="logo">
+      <a class="logo-header">Recipe bok</a>
+    </div>
+    <div class="header-nav">
+      <ul class="header-nav-list">
+        <li routerLinkActive="active">
+          <a routerLink="/recipes">Recipes</a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/shopping-list">Shopping List</a>
+        </li>
+      </ul>
+
+      <ul class="header-nav-dropdown">
+        <li appDropdown class="dropdown">
+          <a style="cursor: pointer" class="dropdown-toggle">Manage</a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-menu-item">
+              <a style="cursor: pointer">Save data</a>
+            </li>
+            <li class="dropdown-menu-item">
+              <a style="cursor: pointer">Fetch data</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,22 @@
+.row {
+  margin: 0 10px;
+}
+.btn {
+  margin: 10px 0;
+}
+.btn-group {
+  position: relative; /* Dodane, aby lista rozwijalna była pozycjonowana względem tego kontenera */
+  display: inline-block; /* Dodane, aby przycisk nie rozciągał się na całą szerokość */
+}
+
+.dropdown-menu {
+  display: none;
+
+  list-style-type: none;
+  padding: 0;
+  margin: 0; /* Dodane, aby zresetować marginesy */
+}
+
+.open .dropdown-menu {
+  display: block;
+}

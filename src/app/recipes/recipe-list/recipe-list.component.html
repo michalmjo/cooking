@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row-wrapp">
+    <div class="btn">
+      <button class="btn-orange" (click)="onNewRecipe()">New Recipe</button>
+    </div>
+  </div>
+
+  <div class="row-wrapp">
+    <div class="row">
+      <app-recipe-item [recipes]="allRecipes"></app-recipe-item>
+    </div>
+  </div>
+</div>

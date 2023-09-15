@@ -1,0 +1,9 @@
+.row {
+  display: flex;
+  width: 100%;
+  /* background-color: blue; */
+}
+
+.row-half {
+  flex-basis: 50%;
+}

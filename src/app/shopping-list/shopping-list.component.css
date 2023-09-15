@@ -1,0 +1,28 @@
+.list-group-item {
+  display: flex;
+}
+
+ul {
+  position: relative;
+  width: 100%;
+}
+li {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  background-color: #252525;
+  border: 1px solid black;
+}
+li a {
+  padding: 10px 5px;
+}
+
+.btn.btn-red {
+  height: 30px;
+  min-width: 50px;
+}
+
+.list-wrap {
+  display: flex;
+  justify-content: space-around;
+}

@@ -1,0 +1,28 @@
+.row-wrap {
+  padding: 5px;
+}
+.row-wrap button {
+  margin: 0px 10px;
+  width: 100%;
+}
+div {
+  width: 100%;
+  margin-right: 4px;
+}
+input,
+textarea {
+  width: 100%;
+  padding: 5px;
+  margin: 5px;
+  background-color: rgb(242, 242, 242);
+  border: none;
+  resize: none;
+}
+.btn.btn-green {
+  color: white;
+}
+
+input.ng-invalid,
+textarea.ng-invalid {
+  border: 2px solid crimson;
+}

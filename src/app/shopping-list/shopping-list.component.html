@@ -1,0 +1,21 @@
+<p>shopping-list works!</p>
+<div class="row">
+  <app-shopping-edit></app-shopping-edit>
+
+  <hr />
+  <ul
+    *ngFor="let item of ingredients; let i = index"
+    class="list-group alternating-colors"
+  >
+    <li class="list-wrap">
+      {{ i + 1 }}
+      <a
+        (click)="onEditElement(i)"
+        class="list-group-item"
+        style="cursor: pointer"
+        >{{ item.name }} {{ item.amount }}</a
+      >
+      <button class="btn btn-red" (click)="onDelete(i)">Delete</button>
+    </li>
+  </ul>
+</div>

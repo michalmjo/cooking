@@ -1,0 +1,71 @@
+<div class="row-wrap">
+  <div>
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" action="">
+      <div class="row-wrap">
+        <button
+          [disabled]="!recipeForm.valid"
+          class="btn"
+          [ngClass]="{
+            'btn-blue': recipeForm.valid,
+            'btn-black': !recipeForm.valid
+          }"
+        >
+          Save
+        </button>
+        <button class="btn btn-red">Cancel</button>
+      </div>
+      <div class="row-wrap">
+        <div>
+          <label for="name">Name</label>
+          <input formControlName="name" type="text" id="name" />
+        </div>
+      </div>
+      <div class="row-wrap">
+        <div>
+          <label for="imagePath">Image URL</label>
+          <input formControlName="imagePath" type="text" id="imagePath" />
+        </div>
+      </div>
+      <div class="row-wrap">
+        <div>
+          <img src="" alt="" class="img-responsive" />
+        </div>
+      </div>
+      <div class="column-wrap">
+        <label for="description">Description</label>
+        <textarea
+          formControlName="description"
+          id="description"
+          cols="30"
+          rows="10"
+          type="text"
+        ></textarea>
+      </div>
+      <div class="column-wrap" formArrayName="ingredients">
+        <div
+          class="row-wrap"
+          *ngFor="let item of controls; let i = index"
+          [formGroupName]="i"
+        >
+          <div>
+            <input formControlName="name" type="text" />
+          </div>
+          <div>
+            <input formControlName="amount" type="number" />
+          </div>
+          <div>
+            <button class="btn btn-red">Delete</button>
+          </div>
+        </div>
+
+        <div class="row-wrap">
+          <div>
+            <button (click)="onAddIngredient()" class="btn btn-green">
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

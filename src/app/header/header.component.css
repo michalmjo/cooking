@@ -1,0 +1,169 @@
+.main-nav {
+  width: 100%;
+  background-color: #1d1d1d;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  /* background-color: orange; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  height: 55px;
+  font-weight: bold;
+}
+
+.logo {
+  flex-basis: 10%;
+}
+
+.logo a {
+  text-decoration: none;
+}
+
+.header-nav {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-nav-list,
+.header-nav-dropdown {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.header-nav-list {
+  display: flex;
+}
+.header-nav-list ul {
+  list-style: none;
+}
+.header-nav-list li {
+  margin: 0 10px;
+}
+.header-nav-list a {
+  text-decoration: none;
+}
+
+.header-nav-dropdown {
+  display: flex;
+}
+.header-nav-list li {
+  transition: all 0.5s ease;
+  background-color: rgba(168, 168, 168, 0);
+  padding: 0px;
+}
+.header-nav-list li:hover {
+  background-color: rgba(107, 99, 57, 0.432);
+  padding: 0 23px;
+}
+
+/* 
+
+*/
+
+.dropdown {
+  position: relative;
+}
+.dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  animation: showMenu 0.4s ease;
+  min-width: 100px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.dropdown-menu-item {
+  padding: 5px 0;
+  transition: all 0.3s ease; /* Dodaj efekt przejścia */
+}
+
+.dropdown-menu-item:hover {
+  background-color: #a06235;
+  border-radius: 5px;
+}
+
+.dropdown-menu-item a {
+  padding: 5px;
+}
+.dropdown-menu-item a:hover {
+  color: black;
+}
+
+.dropdown.open .dropdown-menu {
+  display: block;
+}
+.dropdown.open .dropdown-menu li {
+  padding: 5px 0;
+}
+
+@keyframes showMenu {
+  0% {
+    opacity: 0;
+    left: -100px;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+    left: 0px;
+  }
+}
+
+/* 
+
+*/
+
+.dropdown-menu ul {
+  margin: 0;
+}
+
+.dropdown-toggle {
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  z-index: 0;
+  background: #a06235;
+  overflow: hidden;
+  border: 2px solid #212529;
+  color: #212529;
+}
+
+.dropdown-toggle:hover {
+  color: #fff;
+}
+.dropdown-toggle:hover:after {
+  width: 100%;
+}
+.dropdown-toggle:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  transition: all 0.3s ease;
+  right: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: #212529;
+}
+.header-nav-list .active::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: teal;
+}

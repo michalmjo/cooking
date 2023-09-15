@@ -1,0 +1,36 @@
+<p>shopping-edit works!</p>
+<div class="row">
+  <div class="col">
+    <form [formGroup]="formControl" class="shopping-form">
+      <div class="row">
+        <div class="col form-group">
+          <label for="name">Name</label>
+          <input
+            formControlName="name"
+            type="text"
+            id="name"
+            class="form-control"
+          />
+        </div>
+        <div class="col form-group">
+          <label for="amount">Amount</label>
+          <input
+            formControlName="amount"
+            type="number"
+            id="amount"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button (click)="onSubmit()" class="btn btn-blue">
+            {{ editMode ? "Update" : "Add" }}
+          </button>
+
+          <button (click)="onClear()" class="btn btn-green">Clear</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
