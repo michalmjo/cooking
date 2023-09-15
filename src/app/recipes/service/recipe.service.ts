@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 })
 export class RecipeService {
   recipeSelected = new Subject<Recipe>();
+  recipeChange = new Subject<Recipe[]>();
 
   private allRecipes: Recipe[] = [
     new Recipe(
@@ -31,6 +32,16 @@ export class RecipeService {
   ];
 
   constructor() {}
+
+  addRecipe(recipe: Recipe) {
+    this.allRecipes.push(recipe);
+    this.recipeChange.next(this.allRecipes.slice());
+  }
+
+  updateRecipe(index: number, newRecipe: Recipe) {
+    this.allRecipes[index] = newRecipe;
+    this.recipeChange.next(this.allRecipes.slice());
+  }
 
   getRecipe(id: number) {
     return this.allRecipes[id];
