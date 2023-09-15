@@ -22,7 +22,7 @@ textarea {
   color: white;
 }
 
-input.ng-invalid,
-textarea.ng-invalid {
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
   border: 2px solid crimson;
 }
