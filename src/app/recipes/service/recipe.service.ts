@@ -50,4 +50,9 @@ export class RecipeService {
   getRecipes() {
     return this.allRecipes.slice();
   }
+
+  deleteRecipe(i: number) {
+    this.allRecipes.splice(i, 1);
+    this.recipeChange.next(this.allRecipes.slice());
+  }
 }
