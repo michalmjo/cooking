@@ -17,10 +17,10 @@
         <li appDropdown class="dropdown">
           <a style="cursor: pointer" class="dropdown-toggle">Manage</a>
           <ul class="dropdown-menu">
-            <li class="dropdown-menu-item">
+            <li (click)="onSaveData()" class="dropdown-menu-item">
               <a style="cursor: pointer">Save data</a>
             </li>
-            <li class="dropdown-menu-item">
+            <li (click)="onFetchData()" class="dropdown-menu-item">
               <a style="cursor: pointer">Fetch data</a>
             </li>
           </ul>
