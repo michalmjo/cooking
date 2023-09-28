@@ -1,20 +1,33 @@
 <nav class="main-nav">
   <div class="container">
-    <div class="logo">
-      <a class="logo-header">Recipe bok</a>
+    <div class="logo" style="display: flex">
+      <img style="width: 50px" src="../../../assets/FoodApp.JPG" alt="logo" />
+      <!-- <a class="logo-header"> Recipe bok</a> -->
     </div>
     <div class="header-nav">
       <ul class="header-nav-list">
         <li routerLinkActive="active">
-          <a routerLink="/recipes">Recipes</a>
+          <a routerLink="/recipes">{{ "recipes" | translate }}</a>
         </li>
         <li routerLinkActive="active">
-          <a routerLink="/auth">Auth</a>
+          <a routerLink="/auth">{{ "auth" | translate }}</a>
         </li>
         <li routerLinkActive="active">
-          <a routerLink="/shopping-list">Shopping List</a>
+          <a routerLink="/shopping-list">{{ "shopping-list" | translate }}</a>
         </li>
       </ul>
+      <form action="">
+        <select
+          [(ngModel)]="selectedLanguage"
+          (change)="switchLanguage()"
+          [ngModelOptions]="{ standalone: true }"
+          name=""
+          id=""
+        >
+          <option value="pl">pl</option>
+          <option value="en">en</option>
+        </select>
+      </form>
 
       <ul class="header-nav-dropdown">
         <li appDropdown class="dropdown">

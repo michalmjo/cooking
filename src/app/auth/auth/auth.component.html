@@ -3,7 +3,7 @@
     <div>
       <img style="width: 100px" src="../../../assets/FoodApp.JPG" alt="logo" />
     </div>
-    <h1>Create new Account.</h1>
+    <h1>{{ "create" | translate }}</h1>
     <div class="column-wrap">
       <div class="form-container">
         <form action="">
@@ -27,10 +27,10 @@
             />
           </div>
           <div class="btn-wrap">
-            <button class="btn btn-red">Sign Up</button>
+            <button class="btn btn-red">{{ "sign-up" | translate }}</button>
 
             <button class="btn btn-red" (click)="onSwitchMode()">
-              Switch to Login
+              {{ "switch-to-login" | translate }}
             </button>
           </div>
         </form>

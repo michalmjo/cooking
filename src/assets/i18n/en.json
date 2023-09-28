@@ -1,0 +1,10 @@
+{
+  "title": "Hello",
+  "text": "Angular original app in different languages ​​using i18n library",
+  "create": "Create new account",
+  "sign-up": "Sign Up",
+  "switch-to-login": "Switch to Login",
+  "recipes": "Recipes",
+  "auth": "Auth",
+  "shopping-list": "Shopping-list"
+}
