@@ -21,7 +21,8 @@ a {
 .btn-red,
 .btn-blue,
 .btn-green,
-.btn-orange {
+.btn-orange,
+.btn-grey {
   min-width: 130px;
   height: 40px;
   color: #fff;
@@ -41,14 +42,16 @@ a {
 .btn-red:hover:after,
 .btn-blue:hover:after,
 .btn-orange:hover:after,
-.btn-green:hover:after {
+.btn-green:hover:after,
+.btn-grey:hover:after {
   top: 0;
   left: 0;
 }
 .btn-red::after,
 .btn-blue::after,
 .btn-orange::after,
-.btn-green::after {
+.btn-green::after,
+.btn-grey::after {
   content: "";
   width: 100%;
   z-index: -1;
@@ -67,6 +70,9 @@ a {
 }
 .btn-green::after {
   background-color: green;
+}
+.btn-grey::after {
+  background-color: grey;
 }
 
 .custom-snackbar {

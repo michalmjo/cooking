@@ -4,7 +4,7 @@ import { RecipeService } from '../recipes/service/recipe.service';
 import { map } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../shared/services/language.service';
-
+const LANG_STORAGE_KEY = 'selectedLanguage';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -22,9 +22,17 @@ export class HeaderComponent implements OnInit {
     translate.setDefaultLang('en');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Sprawdź, czy wybrany język jest zapisany w localStorage
+    const storedLanguage = localStorage.getItem(LANG_STORAGE_KEY);
+    if (storedLanguage) {
+      this.selectedLanguage = storedLanguage;
+      this.lang.switchLanguage(this.selectedLanguage);
+    }
+  }
   switchLanguage() {
     this.lang.switchLanguage(this.selectedLanguage);
+    localStorage.setItem(LANG_STORAGE_KEY, this.selectedLanguage);
   }
   //
 

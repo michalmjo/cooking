@@ -6,28 +6,42 @@
     <h1>{{ "create" | translate }}</h1>
     <div class="column-wrap">
       <div class="form-container">
-        <form action="">
-          <div class="form-group">
-            <!-- <label for="email">E-mail</label> -->
-            <input
-              placeholder="email"
-              type="email"
-              name="email"
-              id="email"
-              class="form-control"
-            />
-          </div>
-          <div class="form-group">
-            <!-- <label for="password">Password</label> -->
-            <input
-              placeholder="password"
-              type="password"
-              name="password"
-              id="password"
-            />
+        <form (ngSubmit)="onSubmit()" [formGroup]="authForm" action="">
+          <div formGroupName="userDataGroup">
+            <div class="form-group">
+              <!-- <label for="email">E-mail</label> -->
+              <input
+                formControlName="email"
+                placeholder="email"
+                type="email"
+                name="email"
+                id="email"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <!-- <label for="password">Password</label> -->
+              <input
+                formControlName="password"
+                placeholder="password"
+                type="password"
+                name="password"
+                id="password"
+              />
+            </div>
           </div>
           <div class="btn-wrap">
-            <button class="btn btn-red">{{ "sign-up" | translate }}</button>
+            <button
+              [disabled]="!authForm.valid"
+              type="submit"
+              [ngClass]="{
+                btn: true,
+                'btn-grey ': !authForm.valid,
+                'btn-red': authForm.valid
+              }"
+            >
+              {{ getSignUpText() | translate }}
+            </button>
 
             <button class="btn btn-red" (click)="onSwitchMode()">
               {{ "switch-to-login" | translate }}
