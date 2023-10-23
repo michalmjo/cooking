@@ -7,5 +7,7 @@
   "switch-to-login": "Switch to Login",
   "recipes": "Recipes",
   "auth": "Auth",
-  "shopping-list": "Shopping-list"
+  "shopping-list": "Shopping-list",
+  "register": "Change to register",
+  "log-in": "Change to log-in"
 }

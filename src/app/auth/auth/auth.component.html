@@ -43,8 +43,8 @@
               {{ getSignUpText() | translate }}
             </button>
 
-            <button class="btn btn-red" (click)="onSwitchMode()">
-              {{ "switch-to-login" | translate }}
+            <button type="button" class="btn btn-red" (click)="onSwitchMode()">
+              {{ getChangeLoginText() | translate }}
             </button>
           </div>
         </form>

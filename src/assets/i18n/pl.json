@@ -7,5 +7,7 @@
   "switch-to-login": "Zmień na logowanie",
   "recipes": "Przepisy",
   "auth": "Autoryzacja",
-  "shopping-list": "Lista zakupów"
+  "shopping-list": "Lista zakupów",
+  "register": "Zmień na rejestracje",
+  "log-in": "Zmień na logowanie"
 }
