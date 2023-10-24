@@ -24,6 +24,9 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthComponent } from './auth/auth/auth.component';
 
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { NotificationComponent } from './shared/notification/notification.component';
+
 // Create a function for the translation loader
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -42,6 +45,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     RecipeStartComponent,
     RecipeEditComponent,
     AuthComponent,
+    LoadingSpinnerComponent,
+    NotificationComponent,
   ],
   imports: [
     HttpClientModule,
