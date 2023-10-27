@@ -69,16 +69,15 @@ export class AuthComponent implements OnInit {
       //...
       console.log('tautaj');
     } else {
-      console.log('Tutaj przechodzi dalej');
-      console.log(email, password);
       this.authService.signUp(email, password).subscribe(
         (resData) => {
           console.log(resData);
           this.isLoading = false;
         },
-        (error) => {
-          console.log(error);
-          this.error = error.message;
+        (errorMessage) => {
+          console.log(errorMessage);
+
+          this.error = errorMessage;
           this.notificationService.addNotification(this.error);
           this.isLoading = false;
         }
