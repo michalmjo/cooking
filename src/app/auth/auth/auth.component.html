@@ -19,12 +19,7 @@
     </div>
     <div class="column-wrap">
       <div class="form-container">
-        <form
-          (ngSubmit)="onSubmit()"
-          [formGroup]="authForm"
-          action=""
-          *ngIf="!isLoading"
-        >
+        <form (ngSubmit)="onSubmit()" [formGroup]="authForm" *ngIf="!isLoading">
           <div formGroupName="userDataGroup">
             <div class="form-group">
               <!-- <label for="email">E-mail</label> -->
@@ -35,6 +30,7 @@
                 name="email"
                 id="email"
                 class="form-control"
+                required
               />
             </div>
             <div class="form-group">
