@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { error } from 'console';
 import { UserInfo } from 'os';
 import { catchError, tap, throwError } from 'rxjs';
 import { UserInfoData } from 'src/app/data/models/user-info.model';
 import { AppConfig } from 'src/app/core/models/app-config.interface';
+import { ErrorCodes } from 'src/app/shared/enums/error-codes.enum';
 
 export interface AuthResponseData {
   kind: string;
@@ -42,30 +43,47 @@ export class AuthService {
       )
       .pipe(
         tap((data) => console.log(data)),
-        catchError((errorRes) => {
-          let errorMessage = 'An unknow error occurred!';
-          if (!errorRes.error || !errorRes.error.error) {
-            console.log(errorRes);
-            return throwError(errorMessage);
-          }
-          switch (errorRes.error.error.message) {
-            case 'EMAIL_EXISTS':
-              errorMessage = 'This email exists already';
-          }
-          console.log(errorRes);
-          return throwError(errorMessage);
-        })
+        catchError(this.handleError)
       );
   }
 
   login(data: UserInfoData) {
-    return this.http.post<AuthResponseData>(
-      `${this.config.apiUrl}/accounts:signInWithPassword?key=${this.API_key}`,
-      {
-        email: data.email,
-        password: data.password,
-        returnSecureToken: true,
-      }
-    );
+    return this.http
+      .post<AuthResponseData>(
+        `${this.config.apiUrl}/accounts:signInWithPassword?key=${this.API_key}`,
+        {
+          email: data.email,
+          password: data.password,
+          returnSecureToken: true,
+        }
+      )
+      .pipe(
+        tap((data) => console.log(data)),
+        catchError(this.handleError)
+      );
+  }
+
+  private handleError(errorRes: HttpErrorResponse) {
+    let errorMessage = 'An unknow error occurred!';
+    if (!errorRes.error || !errorRes.error.error) {
+      console.log(errorRes);
+      return throwError(errorMessage);
+    }
+    switch (errorRes.error.error.message) {
+      case ErrorCodes.EmailExists:
+        errorMessage = 'This email exists already';
+        break;
+      case ErrorCodes.EmailNotFound:
+        errorMessage = 'This email does not exist';
+        break;
+      case ErrorCodes.InvalidPassword:
+        errorMessage = 'INvalid Password';
+        break;
+      case ErrorCodes.InvalidLoginCredentials:
+        errorMessage = 'Invalid login credentials';
+        break;
+    }
+    console.log(errorRes);
+    return throwError(errorMessage);
   }
 }
