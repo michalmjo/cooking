@@ -11,6 +11,7 @@ import { Subscription, map } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../shared/services/language.service';
 import { AuthService } from '../auth/auth/service/auth.service';
+import { ColorService } from '../shared/data/color.service';
 const LANG_STORAGE_KEY = 'selectedLanguage';
 @Component({
   selector: 'app-header',
@@ -22,19 +23,28 @@ export class HeaderComponent implements OnInit, OnDestroy {
   selectedLanguage: string = 'en';
 
   private userSub!: Subscription;
+  bannerBackground: string = '';
+  bannerText: string = '';
 
   constructor(
     private dataService: DataStorageService,
     private recipeService: RecipeService,
     private translate: TranslateService,
     private lang: LanguageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private colorService: ColorService
   ) {
     translate.setDefaultLang('en');
   }
 
   ngOnInit(): void {
     // Sprawdź, czy wybrany język jest zapisany w localStorage
+
+    this.colorService.getColors().subscribe((color) => {
+      this.bannerBackground = color.bannerBackground;
+      this.bannerText = color.bannerText;
+    });
+
     this.userSub = this.authService.user.subscribe((user) => {
       console.log(user);
       this.isAuthenticated = !!user;

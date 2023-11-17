@@ -28,7 +28,12 @@
           <option value="en">en</option>
         </select>
       </form>
-
+      <div
+        [style.background-color]="bannerBackground"
+        [style.color]="bannerText"
+      >
+        <p>This is a banner with dynamic colors!</p>
+      </div>
       <ul class="header-nav-dropdown">
         <li *ngIf="isAuthenticated">
           <a style="cursor: pointer">Log Out</a>
