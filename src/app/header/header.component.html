@@ -6,10 +6,10 @@
     </div>
     <div class="header-nav">
       <ul class="header-nav-list">
-        <li routerLinkActive="active">
+        <li routerLinkActive="active" *ngIf="isAuthenticated">
           <a routerLink="/recipes">{{ "recipes" | translate }}</a>
         </li>
-        <li routerLinkActive="active">
+        <li routerLinkActive="active" *ngIf="!isAuthenticated">
           <a routerLink="/auth">{{ "auth" | translate }}</a>
         </li>
         <li routerLinkActive="active">
@@ -30,7 +30,10 @@
       </form>
 
       <ul class="header-nav-dropdown">
-        <li appDropdown class="dropdown">
+        <li *ngIf="isAuthenticated">
+          <a style="cursor: pointer">Log Out</a>
+        </li>
+        <li *ngIf="isAuthenticated" appDropdown class="dropdown">
           <a style="cursor: pointer" class="dropdown-toggle">Manage</a>
           <ul class="dropdown-menu">
             <li (click)="onSaveData()" class="dropdown-menu-item">

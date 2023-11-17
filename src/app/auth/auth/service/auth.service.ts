@@ -2,8 +2,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { error } from 'console';
 import { UserInfo } from 'os';
-import { catchError, tap, throwError } from 'rxjs';
-import { UserInfoData } from 'src/app/data/models/user-info.model';
+import { Subject, catchError, tap, throwError } from 'rxjs';
+import { User, UserInfoData } from 'src/app/data/models/user-info.model';
 import { AppConfig } from 'src/app/core/models/app-config.interface';
 import { ErrorCodes } from 'src/app/shared/enums/error-codes.enum';
 
@@ -22,6 +22,8 @@ export interface AuthResponseData {
 })
 export class AuthService {
   API_key = 'AIzaSyCQ96778DWRU__yRgl91J0qcWyFQilqNOo';
+
+  user = new Subject<User>();
 
   private config: AppConfig;
 
@@ -43,7 +45,25 @@ export class AuthService {
       )
       .pipe(
         tap((data) => console.log(data)),
-        catchError(this.handleError)
+        catchError(this.handleError),
+        tap((resData) => {
+          this.handleAuth(
+            resData.email,
+            resData.localId,
+            resData.idToken,
+            +resData.expiresIn
+          );
+          // const expirationDate = new Date(
+          //   new Date().getTime() + +resData.expiresIn * 1000
+          // );
+          // const user = new User(
+          //   resData.email,
+          //   resData.localId,
+          //   resData.idToken,
+          //   expirationDate
+          // );
+          // this.user.next(user);
+        })
       );
   }
 
@@ -59,7 +79,15 @@ export class AuthService {
       )
       .pipe(
         tap((data) => console.log(data)),
-        catchError(this.handleError)
+        catchError(this.handleError),
+        tap((resData) => {
+          this.handleAuth(
+            resData.email,
+            resData.localId,
+            resData.idToken,
+            +resData.expiresIn
+          );
+        })
       );
   }
 
@@ -85,5 +113,16 @@ export class AuthService {
     }
     console.log(errorRes);
     return throwError(errorMessage);
+  }
+
+  handleAuth(
+    email: string,
+    localId: string,
+    idToken: string,
+    expiresIn: number
+  ) {
+    const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
+    const user = new User(email, localId, idToken, expirationDate);
+    this.user.next(user);
   }
 }

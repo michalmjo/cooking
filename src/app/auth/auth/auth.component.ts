@@ -7,6 +7,7 @@ import { error } from 'console';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { Observable } from 'rxjs';
 import { AppConfig } from 'src/app/core/models/app-config.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -31,7 +32,8 @@ export class AuthComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router: Router
   ) {
     this.notificationService.getNotifications().subscribe((notifications) => {
       this.notifications = notifications;
@@ -81,6 +83,7 @@ export class AuthComponent implements OnInit {
       (resData) => {
         console.log(resData);
         this.isLoading = false;
+        this.router.navigate(['/recipes']);
       },
       (errorMessage) => {
         console.log(errorMessage);
