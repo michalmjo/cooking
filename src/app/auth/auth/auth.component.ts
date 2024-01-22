@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/shared/services/language.service';
 import { AuthResponseData, AuthService } from './service/auth.service';
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent implements OnInit {
-  authForm!: FormGroup;
+  authForm!: UntypedFormGroup;
 
   isLoginMode = true;
   isLoading = false;
@@ -51,10 +51,10 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authForm = new FormGroup({
-      userDataGroup: new FormGroup({
-        email: new FormControl(null, [Validators.required, Validators.email]),
-        password: new FormControl(null, Validators.required),
+    this.authForm = new UntypedFormGroup({
+      userDataGroup: new UntypedFormGroup({
+        email: new UntypedFormControl(null, [Validators.required, Validators.email]),
+        password: new UntypedFormControl(null, Validators.required),
       }),
     });
   }

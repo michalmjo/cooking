@@ -10,8 +10,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ShoppingListService } from '../service/shopping-list.service';
 import {
   FormArray,
-  FormControl,
-  FormGroup,
+  UntypedFormControl,
+  UntypedFormGroup,
   NgForm,
   Validators,
 } from '@angular/forms';
@@ -27,7 +27,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   ingName: string = '';
   amount?: number;
   sub!: Subscription;
-  formControl!: FormGroup;
+  formControl!: UntypedFormGroup;
   editMode = false;
   editedItemIndex!: number;
   editedItem!: Ingredients;
@@ -37,9 +37,9 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.formControl = new FormGroup({
-      name: new FormControl(null, Validators.required),
-      amount: new FormControl(null, [Validators.required]),
+    this.formControl = new UntypedFormGroup({
+      name: new UntypedFormControl(null, Validators.required),
+      amount: new UntypedFormControl(null, [Validators.required]),
     });
     console.log(this.formControl.valid);
 
