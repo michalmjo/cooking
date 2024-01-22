@@ -15,8 +15,8 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
+import { MatLegacySlideToggleModule as MatSlideToggleModule } from '@angular/material/legacy-slide-toggle';
 import { DropdownDirective } from './shared/directives/dropdown.directive';
 import { Routes } from '@angular/router';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';

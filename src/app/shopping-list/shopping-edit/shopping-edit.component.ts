@@ -6,7 +6,7 @@ import {
   Input,
   OnDestroy,
 } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { ShoppingListService } from '../service/shopping-list.service';
 import {
   FormArray,
