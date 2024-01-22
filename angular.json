@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "food-app-kurs:build:production"
+              "buildTarget": "food-app-kurs:build:production"
             },
             "development": {
-              "browserTarget": "food-app-kurs:build:development"
+              "buildTarget": "food-app-kurs:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "food-app-kurs:build"
+            "buildTarget": "food-app-kurs:build"
           }
         },
         "test": {
