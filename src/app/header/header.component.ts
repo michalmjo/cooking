@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @ViewChild('paragraphElement') paragraphElement!: ElementRef;
 
   private userSub!: Subscription;
+
   bannerBackground: string = '';
   bannerText: string = '';
   isSpeaking: boolean = false;
@@ -88,5 +89,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onFetchData() {
     console.log('fetch data');
     this.dataService.fetchRecipes().subscribe();
+  }
+  onLogOut() {
+    this.authService.logOut();
   }
 }

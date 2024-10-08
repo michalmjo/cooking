@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/shared/services/language.service';
 import { AuthResponseData, AuthService } from './service/auth.service';
@@ -8,6 +15,7 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
 import { Observable } from 'rxjs';
 import { AppConfig } from 'src/app/core/models/app-config.interface';
 import { Router } from '@angular/router';
+import { PasswordValidator } from 'src/app/shared/validators/password';
 
 @Component({
   selector: 'app-auth',
@@ -53,8 +61,11 @@ export class AuthComponent implements OnInit {
   ngOnInit(): void {
     this.authForm = new UntypedFormGroup({
       userDataGroup: new UntypedFormGroup({
-        email: new UntypedFormControl(null, [Validators.required, Validators.email]),
-        password: new UntypedFormControl(null, Validators.required),
+        email: new UntypedFormControl(null, [
+          Validators.required,
+          Validators.email,
+        ]),
+        password: new UntypedFormControl(null, [Validators.required]),
       }),
     });
   }
@@ -69,6 +80,8 @@ export class AuthComponent implements OnInit {
     const email = this.authForm.get('userDataGroup.email')?.value;
     const password = this.authForm.get('userDataGroup.password')?.value;
     this.isLoading = true;
+    console.log(email);
+    console.log(password);
 
     let authObs: Observable<AuthResponseData>;
     if (this.isLoginMode) {

@@ -6,6 +6,7 @@ import { BehaviorSubject, Subject, catchError, tap, throwError } from 'rxjs';
 import { User, UserInfoData } from 'src/app/data/models/user-info.model';
 import { AppConfig } from 'src/app/core/models/app-config.interface';
 import { ErrorCodes } from 'src/app/shared/enums/error-codes.enum';
+import { Router } from '@angular/router';
 
 export interface AuthResponseData {
   kind: string;
@@ -17,6 +18,13 @@ export interface AuthResponseData {
   registered?: boolean;
 }
 
+export interface userData {
+  email: string;
+  id: string;
+  _token: string;
+  _tokenExpirationDate: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,14 +34,45 @@ export class AuthService {
   user = new BehaviorSubject<User | null>(null);
 
   private config: AppConfig;
+  private expDurationTime: any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.config = {
       apiUrl: 'https://identitytoolkit.googleapis.com/v1',
     };
   }
 
+  autoLogin() {
+    const userDataString = localStorage.getItem('userData');
+    if (!userDataString) {
+      return;
+    }
+
+    const userData: userData = JSON.parse(userDataString);
+    if (!userData) {
+      return;
+    }
+
+    const loadedUser = new User(
+      userData.email,
+      userData.id,
+      userData._token,
+      new Date(userData._tokenExpirationDate)
+    );
+    // Tutaj możesz zaktualizować BehaviorSubject user
+
+    if (loadedUser.token) {
+      this.user.next(loadedUser);
+      const newTokenExpTime =
+        new Date(userData._tokenExpirationDate).getTime() -
+        new Date().getTime();
+      this.autoLogout(newTokenExpTime);
+    }
+  }
+
   signUp(data: UserInfoData) {
+    console.log(data.email);
+    console.log(data.password);
     return this.http
       .post<AuthResponseData>(
         `${this.config.apiUrl}/accounts:signUp?key=${this.API_key}`,
@@ -81,6 +120,23 @@ export class AuthService {
       );
   }
 
+  logOut() {
+    this.user.next(null);
+    this.router.navigate(['/auth']);
+    localStorage.removeItem('userData');
+    if (this.expDurationTime) {
+      clearTimeout(this.expDurationTime);
+    }
+    this.expDurationTime = null;
+  }
+
+  autoLogout(expData: number) {
+    console.log(expData);
+    this.expDurationTime = setTimeout(() => {
+      this.logOut();
+    }, expData);
+  }
+
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknow error occurred!';
     if (!errorRes.error || !errorRes.error.error) {
@@ -114,5 +170,7 @@ export class AuthService {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const user = new User(email, localId, idToken, expirationDate);
     this.user.next(user);
+    this.autoLogout(expiresIn * 1000);
+    localStorage.setItem('userData', JSON.stringify(user));
   }
 }

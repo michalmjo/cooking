@@ -28,15 +28,15 @@
           <option value="en">en</option>
         </select>
       </form>
-      <div
+      <!-- <div
         [style.background-color]="bannerBackground"
         [style.color]="bannerText"
       >
         <p>This is a banner with dynamic colors!</p>
-      </div>
+      </div> -->
       <ul class="header-nav-dropdown">
         <li *ngIf="isAuthenticated">
-          <a style="cursor: pointer">Log Out</a>
+          <a style="cursor: pointer" (click)="onLogOut()">Log Out</a>
         </li>
         <li *ngIf="isAuthenticated" appDropdown class="dropdown">
           <a style="cursor: pointer" class="dropdown-toggle">Manage</a>
